@@ -45,8 +45,8 @@ router.get('employee/:id', (req, res) => {
   });
 });
 
-// Create a candidate
-router.post('/candidate', ({ body }, res) => {
+// Create an employee
+router.post('/employee', ({ body }, res) => {
   const errors = inputCheck(
     body,
     'first_name',
@@ -57,7 +57,7 @@ router.post('/candidate', ({ body }, res) => {
     return;
   }
 
-  const sql = `INSERT INTO employee (first_name, last_name,, title, department, salary, manager) VALUES`;
+  const sql = `INSERT INTO employee (first_name, last_name,, title, department, salary, manager) VALUES (?,?,?)`;
   const params = [
     body.first_name,
     body.last_name,
@@ -79,7 +79,7 @@ router.post('/candidate', ({ body }, res) => {
   });
 });
 
-// Update a candidate's party
+// Update an employee's department
 router.put('/employee/:id', (req, res) => {
   const errors = inputCheck(req.body, 'department_id');
   if (errors) {
