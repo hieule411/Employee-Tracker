@@ -109,23 +109,12 @@ router.put('/employee/:id', (req, res) => {
 });
 
 // Delete an employee
-router.delete('/candidate/:id', (req, res) => {
-  const sql = `DELETE FROM Employee WHERE id = ?`;
+router.delete('/candidate/:id', (req, res) => {});
 
-  db.query(sql, req.params.id, (err, result) => {
-    if (err) {
-      res.status(400).json({ error: res.message });
-    } else if (!result.affectedRows) {
-      res.json({
-        message: 'Employee not found'
-      });
-    } else {
-      res.json({
-        message: 'deleted',
-        changes: result.affectedRows,
-        id: req.params.id
-      });
-    }
+router.post('/seed', (req, res) => {
+  employee.bulkCreate([
+  ]).then(() => {
+    res.send('Seeding Success!');
   });
 });
 
